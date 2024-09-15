@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Container, Logo, LogoutBtn} from '../index'
 import { Link } from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 function Header() {
+  
+  const [line, setline] = useState(true)
   const authStatus = useSelector((state) => state.auth.status)
   const navigate = useNavigate()
 
@@ -35,19 +37,23 @@ function Header() {
       active: authStatus,
   },
   ]
+  
 
 
   return (
     <header className='py-3 shadow bg-[#2b2d42]'>
       <Container>
-        <nav className='flex'>
+        <nav className='flex justify-between '>
           <div className='mr-4'>
             <Link to='/'>
               <Logo width='70px'   />
 
               </Link>
           </div>
-          <ul className='flex ml-auto'>
+              <button className='text-white z-10 md:hidden absolute font-bold top-1 right-3 ' onClick={()=>{
+                setline(!line)
+              }} >{line?'Menu':'❌'}</button>
+          <ul className={`${line?'hidden':''} transition-opacity   ml-auto md:flex `} >
             {navItems.map((item) => 
             item.active ? (
               <li key={item.name}>

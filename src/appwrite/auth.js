@@ -1,3 +1,4 @@
+import { current } from "@reduxjs/toolkit";
 import conf from "../conf/conf.js";
 import { Client, Account, ID } from "appwrite";
 
@@ -45,7 +46,7 @@ export class AuthService {
   }
   async logout() {
     try {
-      await this.account.deleteSession();
+      await this.account.deleteSession("current");
     } catch (error) {
       console.log("appwrteservices :: logout::error", error);
     }

@@ -1,8 +1,10 @@
 import React from 'react'
+import logo from '/logo.webp'
 
 const Logo = ({width='100px'}) => {
   return (
-    <div>Twitter</div>
+   
+    <img width={width} src={logo} alt="Logo" />
   )
 }
 
